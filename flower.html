@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blooming Just for You 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to top, #ffe4ec, #fff);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .garden {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .flower {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .petal {
+      position: absolute;
+      width: 20px;
+      height: 30px;
+      background: #ff69b4;
+      border-radius: 50%;
+      top: 15px;
+      left: 20px;
+      transform-origin: bottom center;
+    }
+
+    .petal:nth-child(1) { transform: rotate(0deg); }
+    .petal:nth-child(2) { transform: rotate(72deg); }
+    .petal:nth-child(3) { transform: rotate(144deg); }
+    .petal:nth-child(4) { transform: rotate(216deg); }
+    .petal:nth-child(5) { transform: rotate(288deg); }
+
+    .center {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: yellow;
+      border-radius: 50%;
+      top: 20px;
+      left: 20px;
+      box-shadow: 0 0 5px #ffaa00;
+    }
+
+    .message {
+      position: absolute;
+      background-color: #fff0f8;
+      padding: 10px 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+      font-size: 0.9em;
+      color: #b3005f;
+      white-space: nowrap;
+      transform: translate(-50%, -150%);
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    h1 {
+      font-size: 1.6em;
+      color: #ff4e8b;
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tap a flower to reveal a piece of my heart 🌼</h1>
+  <div class="garden" id="garden"></div>
+
+  <script>
+    const garden = document.getElementById("garden");
+    const loveNotes = [
+      "You're my everything. 💞",
+      "I loveee youu soo muchhh!! 🥺🥺🥺",
+      "You're all that I want. 😘😘😘",
+      "You're my forever. 🌷",
+      "You're my sweetest bloom 🌹",
+      "Your smile definitely completes my day. 🥰",
+      "You make everything beautiful 🌺",
+      "Each moment with you, I feel so loved. 💝"
+    ];
+
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.className = "flower";
+
+      // random position
+      const x = Math.random() * (window.innerWidth - 60);
+      const y = Math.random() * (window.innerHeight - 160) + 50;
+
+      flower.style.left = x + "px";
+      flower.style.top = y + "px";
+
+      // Create petals
+      for (let i = 1; i <= 5; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        flower.appendChild(petal);
+      }
+
+      // Create center
+      const center = document.createElement("div");
+      center.className = "center";
+      flower.appendChild(center);
+
+      // Click to show message
+      flower.onclick = () => {
+        const msg = document.createElement("div");
+        msg.className = "message";
+        msg.innerText = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+        msg.style.left = x + 30 + "px";
+        msg.style.top = y - 10 + "px";
+        garden.appendChild(msg);
+        setTimeout(() => msg.remove(), 4000);
+      };
+
+      garden.appendChild(flower);
+    }
+
+    // Create many flowers
+    for (let i = 0; i < 15; i++) {
+      createFlower();
+    }
+  </script>
+</body>
+</html>

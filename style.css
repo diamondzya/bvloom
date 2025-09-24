@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+/* General body styling */
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(to top, #ffe4ec, #fff);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+/* Garden container */
+.garden {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* Flower base */
+.flower {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Petals */
+.petal {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  background: #ff69b4;
+  border-radius: 50%;
+
+  top: 15px;
+  left: 20px;
+  transform-origin: bottom center;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg); }
+.petal:nth-child(2) { transform: rotate(72deg); }
+.petal:nth-child(3) { transform: rotate(144deg); }
+.petal:nth-child(4) { transform: rotate(216deg); }
+.petal:nth-child(5) { transform: rotate(288deg); }
+
+/* Center of flower */
+.center {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  border-radius: 50%;
+
+  top: 34px;
+  left: 20px;
+
+  box-shadow: 0 0 5px #ffaa00;
+}
+
+/* Message tooltip */
+.message {
+  position: absolute;
+  background-color: #fff0f8;
+  padding: 10px 15px;
+  border-radius: 12px;
+
+  box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+  font-size: 0.9em;
+  color: #b3005f;
+
+  white-space: nowrap;
+  transform: translate(-50%, -150%);
+
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Heading */
+h1 {
+  font-size: 1.6em;
+  color: #ff4e8b;
+  text-align: center;
+
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
